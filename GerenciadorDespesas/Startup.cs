@@ -49,15 +49,16 @@ namespace GerenciadorDespesas
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
+            app.UseStaticFiles();            
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=TipoDespesas}/{action=Index}/{id?}");
             });
+
+            app.UseCookiePolicy();
         }
     }
 }
