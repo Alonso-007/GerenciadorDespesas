@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GerenciadorDespesas.Mapeamento;
+using Microsoft.EntityFrameworkCore;
 
 namespace GerenciadorDespesas.Models
 {
@@ -10,5 +11,13 @@ namespace GerenciadorDespesas.Models
         public DbSet<Salarios> Salarios { get; set; }
         public DbSet<Despesas> Despesas { get; set; }
         public DbSet<TipoDespesas> TipoDespesas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new TipoDespesaMap());
+            modelBuilder.ApplyConfiguration(new DespesasMap());
+            modelBuilder.ApplyConfiguration(new SalariosMap());
+            modelBuilder.ApplyConfiguration(new MesesMap());
+        }
     }
 }
