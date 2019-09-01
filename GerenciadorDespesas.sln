@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GerenciadorDespesas", "GerenciadorDespesas\GerenciadorDespesas.csproj", "{A67A2C4F-DC02-43BA-B8E6-E6068D5150BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A67A2C4F-DC02-43BA-B8E6-E6068D5150BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A67A2C4F-DC02-43BA-B8E6-E6068D5150BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A67A2C4F-DC02-43BA-B8E6-E6068D5150BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A67A2C4F-DC02-43BA-B8E6-E6068D5150BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D690D38C-3853-4783-ADA7-510A9EAF5A37}
+	EndGlobalSection
+EndGlobal
