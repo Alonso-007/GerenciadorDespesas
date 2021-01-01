@@ -25,15 +25,7 @@ namespace GerenciadorDespesas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
             services.AddDbContext<Contexto>(opcoes => opcoes.UseSqlServer(Configuration.GetConnectionString("Conexao")));
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -55,10 +47,8 @@ namespace GerenciadorDespesas
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=TipoDespesas}/{action=Index}/{id?}");
+                    template: "{controller=Despesas}/{action=Index}/{id?}");
             });
-
-            app.UseCookiePolicy();
         }
     }
 }

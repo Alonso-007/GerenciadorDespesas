@@ -34,12 +34,17 @@
             <div class="col">
                 <partial name="_GastoMes" />
             </div>
-
-            <div class="col">
-                <partial name="_GastoTotais" />
-            </div>
         </div>
 
+        <div class="col">
+            <partial name="_GastoTotais" />
+        </div>
+
+        <div class="estatisticas">
+            <div class="alert alert-primary">
+                @await Component.InvokeAsync("Estatisticas")
+            </div>
+        </div>
 
         <div class="tabelaPrincipal">
             <table class="table table-hover">
