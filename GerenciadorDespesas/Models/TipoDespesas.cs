@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GerenciadorDespesas.Models
@@ -8,6 +9,7 @@ namespace GerenciadorDespesas.Models
         public int TipoDespesaId { get; set; }
         [Required(ErrorMessage = "Campo obrigatorio.")]
         [StringLength(50,ErrorMessage = "Use menos caracteres.")]
+        [Remote("TipoDespesaExiste", "TipoDespesas")]
         public string Nome { get; set; }
         public ICollection<Despesas> Despesas { get; set; }
     }

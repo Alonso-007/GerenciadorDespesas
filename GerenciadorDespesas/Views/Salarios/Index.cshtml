@@ -1,28 +1,32 @@
-﻿@model IEnumerable<GerenciadorDespesas.Models.TipoDespesas>
+﻿@model IEnumerable<GerenciadorDespesas.Models.Salarios>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Salários Cadatrados";
 }
 
 <div class="tabela">
-
     <div class="container">
+
+        <h6>Salários cadastrados</h6>
+
         <p class="btnNovo">
-            <a asp-action="Create" class="btn btn-outline-primary btn-sm">Novo tipo de despesa</a>
+            <a asp-action="Create" class="btn btn-outline-primary btn-sm">Novo salário</a>
         </p>
 
-        @if(TempData["Confirmacao"] != null)
+        @if (TempData["Confirmacao"] != null)
         {
-            <h6 class="alert alert-success">@TempData["Confirmacao"]</h6>
+            <h6 class="alert alert-success">
+                @TempData["Confirmacao"]
+            </h6>
         }
 
-        <form asp-action="Index" asp-controller="TipoDespesas" method="post">
+        <form asp-action="Index" asp-controller="Salarios" method="post">
             <div class="form-group">
                 <div class="input-group col-md-6">
-                    <input class="form-control" name="txtProcurar"/>
+                    <input class="form-control" name="txtProcurar" />
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-outline-dark">
-                            <i class="fas fa-search-plus" ></i>
+                            <i class="fas fa-search-plus"></i>
                         </button>
                     </div>
                 </div>
@@ -33,11 +37,12 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Nome)
+                        @Html.DisplayNameFor(model => model.Meses)
                     </th>
                     <th>
-                        Opções
+                        @Html.DisplayNameFor(model => model.Valor)
                     </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -45,11 +50,14 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Nome)
+                            @Html.DisplayFor(modelItem => item.Meses.Nome)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.TipoDespesaId" class="btn btn-outline-info btn-sm">Atualizar</a> |
-                            <a class="btn btn-outline-danger btn-sm" onclick="ExibirModal(@item.TipoDespesaId, '@item.Nome')">Excluir</a>
+                            @Html.DisplayFor(modelItem => item.Valor)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.SalarioId" class="btn btn-outline-info btn-sm">Atualizar</a> |
+                            <a onclick="ExibirModal(@item.SalarioId)" class="btn btn-outline-danger btn-sm">Excluir</a>
                         </td>
                     </tr>
                 }
@@ -68,7 +76,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Deseja prosseguir com a exclusão de <text class="nome"></text>.</p>
+                <p>Deseja prosseguir com a exclusão do salário ?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary btnExcluir">Sim</button>
@@ -78,16 +86,15 @@
     </div>
 </div>
 
-@section  Scripts {
+@section Scripts {
     <script>
-        function ExibirModal(id, nome) {
-            $(".nome")[0].innerHTML = nome;
+        function ExibirModal(id) {
 
             $(".modal").modal("show");
 
             $(".btnExcluir").on("click", function (e) {
                 $.ajax({
-                    url: "TipoDespesas/Delete",
+                    url: "Salarios/Delete",
                     method: "Post",
                     data: { id: id },
                     success: function (data) {

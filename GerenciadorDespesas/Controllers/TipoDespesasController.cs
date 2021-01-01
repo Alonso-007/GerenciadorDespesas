@@ -18,10 +18,49 @@ namespace GerenciadorDespesas.Controllers
             _context = context;
         }
 
-        // GET: TipoDespesas
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.TipoDespesas.ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(string txtProcurar)
+        {
+            if (!String.IsNullOrWhiteSpace(txtProcurar))
+            {
+                return View(await _context.TipoDespesas.Where(td => td.Nome.ToUpper().Contains(txtProcurar.ToUpper())).ToListAsync());
+            }
+
+            return View(await _context.TipoDespesas.ToListAsync());
+        }
+
+        public async Task<JsonResult> TipoDespesaExiste(string nome)
+        {
+            if (await _context.TipoDespesas.AnyAsync(td => td.Nome.ToUpper() == nome.ToUpper()))
+            {
+                return Json("Esse tipo de depesa já existe");
+            }
+
+            return Json(true);
+        }
+
+        public JsonResult AdicionarTipoDespesa(string txtDespesa)
+        {
+            if (!string.IsNullOrEmpty(txtDespesa))
+            {
+                if (!_context.TipoDespesas.Any(td => td.Nome.ToUpper() == txtDespesa.ToUpper()))
+                {
+                    TipoDespesas tipoDespesas = new TipoDespesas();
+                    tipoDespesas.Nome = txtDespesa;
+                    _context.Add(tipoDespesas);
+                    _context.SaveChanges();
+
+                    return Json(true);
+                }
+            }
+
+            return Json(false);
         }
 
         // GET: TipoDespesas/Create
